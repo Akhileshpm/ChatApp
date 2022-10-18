@@ -1,0 +1,26 @@
+{
+  "name": "course",
+  "version": "1.0.0",
+  "description": "this is a chat application built using nodejs and socket.io",
+  "main": "notes.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akhileshpm/ChatApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Akhileshpm/ChatApp/issues"
+  },
+  "homepage": "https://github.com/Akhileshpm/ChatApp#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
