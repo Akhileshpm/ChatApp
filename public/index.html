@@ -4,7 +4,12 @@
     </head>
     <body>
         <h1>Welcome to the completely free and secure Chat app ever.</h1>
-        <button id="increment">+1</button>
+
+        <form>
+            <textarea name="message" id="textarea" cols="30" rows="2"></textarea>
+            <input type="submit" value="submit" id="submit-button">
+        </form>
+        <button id="send-location">Send Location</button>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/js/chat.js"></script>
     </body>
