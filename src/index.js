@@ -16,12 +16,14 @@ io.on('connection', (socket)=>{
     socket.emit('message','welcome!');
     socket.broadcast.emit('message', 'A new user has joined the chat');
 
-    socket.on('sendMessage', (message)=>{
+    socket.on('sendMessage', (message, callback)=>{
         io.emit('message', message);
+        callback('delivered');
     })
 
-    socket.on('sendLocation',(locationData)=>{
-        io.emit('message',`Location: ${locationData.latitude}, ${locationData.longitude}`)
+    socket.on('sendLocation',(locationData, callback)=>{
+        io.emit('message',`https://google.com/maps?q=${locationData.latitude},${locationData.longitude}`);
+        callback();
     })
     socket.on('disconnect', ()=>{
         io.emit('message', 'Someone left the chat');
