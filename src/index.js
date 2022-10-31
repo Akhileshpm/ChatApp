@@ -22,7 +22,7 @@ io.on('connection', (socket)=>{
     })
 
     socket.on('sendLocation',(locationData, callback)=>{
-        io.emit('message',`https://google.com/maps?q=${locationData.latitude},${locationData.longitude}`);
+        io.emit('locationPublic',`https://google.com/maps?q=${locationData.latitude},${locationData.longitude}`);
         callback();
     })
     socket.on('disconnect', ()=>{

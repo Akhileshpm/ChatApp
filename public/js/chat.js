@@ -18,6 +18,17 @@ socket.on('message', (message)=>{
     messages.insertAdjacentHTML('beforeend', html);
 })
 
+
+socket.on('locationPublic', (location) => { 
+
+    const html = `<button id="loc" class="button-34" role="button" >View location</button>`;
+    messages.insertAdjacentHTML('beforeend', html);
+
+    document.getElementById('loc').addEventListener('click', ()=>{
+        window.open(location);
+    })
+})
+
 submitButton.addEventListener('click',(e)=>{
     e.preventDefault();
 
