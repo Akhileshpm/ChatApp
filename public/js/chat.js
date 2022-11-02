@@ -13,7 +13,8 @@ const messageTemplate = document.getElementById('message-template').innerHTML;
 socket.on('message', (message)=>{
     console.log(message);
     const html = Mustache.render(messageTemplate, {
-        message
+        message: message.text,
+        createdAt: moment(message.createdAt).format('h:mm a')
     });
     messages.insertAdjacentHTML('beforeend', html);
 })
@@ -21,11 +22,11 @@ socket.on('message', (message)=>{
 
 socket.on('locationPublic', (location) => { 
 
-    const html = `<button id="loc" class="button-34" role="button" >View location</button>`;
+    const html = `<div class="location-box" ><span class="createdAt">${moment(location.createdAt).format('h:mm a')}</span><button id=${location.text+location.createdAt} class="button-34" role="button" >View location</button><div><br>`;
     messages.insertAdjacentHTML('beforeend', html);
 
-    document.getElementById('loc').addEventListener('click', ()=>{
-        window.open(location);
+    document.getElementById(`${location.text+location.createdAt}`).addEventListener('click', ()=>{
+        window.open(location.text);
     })
 })
 
