@@ -1,59 +1,32 @@
 <html>
     <head>
         <title>Chat App</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Welcome to the completely free and secure Chat app ever.</h1>
-        <div id="messages"></div>
-        <form>
-            <textarea name="message" id="textarea" cols="30" rows="2" style="resize: none;"></textarea>
-            <input class="button-34" type="submit" value="send" id="submit-button">
-        </form>
-        <button class="button-34" id="send-location">Send Location</button>
-        <script id="message-template" type="text/html">
-            <div id="msg-box">
-                <p style="display: flex;"> <span class="createdAt">{{createdAt}}</span> - {{message}}</p>
-            </div> 
-        </script>
-        <style>
-            .button-34 {
-                background: #5E5DF0;
-                border-radius: 999px;
-                box-shadow: #5E5DF0 0 10px 20px -10px;
-                box-sizing: border-box;
-                color: #FFFFFF;
-                cursor: pointer;
-                font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
-                font-size: 16px;
-                font-weight: 700;
-                line-height: 24px;
-                opacity: 1;
-                outline: 0 solid transparent;
-                padding: 8px 18px;
-                user-select: none;
-                -webkit-user-select: none;
-                touch-action: manipulation;
-                width: fit-content;
-                word-break: break-word;
-                border: 0;
-                margin-bottom: 10px;
-                position: absolute;
-                }
-            .createdAt {
-                font-size: small;    
-                font-family: sans-serif;
-            }
-            .location-box{
-                margin: 15px 0px;
-                background: beige;
-                height: 50px;
-            }
-            #msg-box{
-                display: flex;
-                background: antiquewhite;
-                height: 50px;
-            }
-        </style>
+        <h1>FreeChat</h1>
+        <div id="chat-window">
+            <div id="messages">
+                <script id="message-template" type="text/html">
+                    <div id="msg-box">
+                        <p id="chat-message" style="display: flex;"> <span class="createdAt">{{createdAt}}</span> - {{message}}</p>
+                    </div> 
+                </script>
+            </div>      
+      </div>
+          <div id="buttonAndTextField"
+               <form>
+                <textarea
+                  name="message"
+                  id="textarea"
+                  cols="30"
+                  rows="2"
+                  style="resize: none"
+                ></textarea>
+                <input class="button-34" type="submit" value="send" id="submit-button" />
+              </form>
+              <button class="button-34" id="send-location">Send Location</button> 
+          </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js"></script>
