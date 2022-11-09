@@ -19,6 +19,7 @@ socket.on('message', (message)=>{
     messages.insertAdjacentHTML('beforeend', html);
 })
 
+const { username, roomname} = Qs.parse(location.search, { ignoreQueryPrefix: true});
 
 socket.on('locationPublic', (location) => { 
 
@@ -62,3 +63,10 @@ locationButton.addEventListener('click',() => {
             })
         })
 })
+
+socket.emit('join', {username, roomname}, (error) => {
+    if(error){
+        alert(error);
+        location.href = '/';
+    }
+});

@@ -51,5 +51,41 @@
       background: rgb(113, 230, 113);
     }
     body{
-      background: grey;
+      background: rgba(255, 125, 19, 0.913);
+    }
+    #join-form {
+      display: grid;
+      row-gap: 20px;
+    }
+    .centered-form {
+        height: 300px;
+        background-color: #3f3e3e;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        color: white;
+        left: 0;
+        right: 0;
+        margin: auto;
+        padding: 40px;
+        width: 220px;
+        display: grid;
+        grid-column: 10px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .centered-form__box {
+        position: absolute;
+        right: 40px;
+        left: 40px;
+        top: 10px;
+        bottom: 20px;
+    }
+    .inputFields-join {
+      height: 40px;
+    }
+     .inputFields-join.button{
+      background: rgb(0, 255, 225);
+      color: rgb(255, 255, 255);
+      font-size: larger;
+      font-weight:bolder;
     }
