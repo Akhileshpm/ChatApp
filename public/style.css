@@ -1,10 +1,20 @@
+#freeChat{
+  background: #ffffff;
+  width: fit-content;
+  padding: 0px 0.5em;
+  border-radius: 25px 12px;
+}
 #chat-window {
     height: 85vh;
     position: absolute;
     bottom: 50px;
-    width: 90vw;
+    width: 55vw;
     background: #f3f1ee;
     overflow-y: auto;
+    margin-left: 250px;
+    padding-left: 20px;
+    border-radius: 25px 25px 0px 0px;
+    padding-top: 15px;
   }
   #buttonAndTextField {
     position: absolute;
@@ -13,20 +23,31 @@
     gap:10px;
   }  
   textarea{
-    width: 75vw;
+    width: 37vw;
+    margin-left: 250px;
+    resize: none;
+    position: relative;
+    bottom: -14px;
   }
-  #chat-message {
+  textarea:focus{
+    outline: none !important;
+    border:1px solid rgb(0, 149, 99);
+    box-shadow: 0 0 10px #00cbff;
+  }
+  .chat-message {
     max-height: fit-content;
-    border: #45b7a2 2px solid;
     max-width: 450px;
     background: white;
     border-radius: 8px;
     padding: 3px;
+    margin: 3px 0px;
+
   }
   .createdAt {
     color: grey;
   }
   .button-34 {
+    display: inline;
     background: #5E5DF0;
     border-radius: 999px;
     box-shadow: #5E5DF0 0 10px 20px -10px;
@@ -51,7 +72,7 @@
       background: rgb(113, 230, 113);
     }
     body{
-      background: rgba(255, 125, 19, 0.913);
+      background: rgba(30, 215, 166, 0.389);
     }
     #join-form {
       display: grid;
@@ -89,3 +110,15 @@
       font-size: larger;
       font-weight:bolder;
     }
+.username {
+    margin: 5px 0px 5px 0px;
+    background: #c3c3fa;
+    width: fit-content;
+    padding: 0px 0.5em;
+    border-radius: 25px 12px;
+}
+#buttonAndTextFieldForm{
+  display: inline;
+  position: relative;
+  bottom: -14px;
+}

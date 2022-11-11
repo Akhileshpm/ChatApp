@@ -24,19 +24,22 @@ io.on('connection', (socket)=>{
         }
 
         socket.join(user.room);
-        socket.emit('message',generateMessage('Welcome!'));
+        socket.emit('message',generateMessage('FreeChat','Welcome!'));
         socket.broadcast.to(user.room).emit('message', generateMessage(`${user.username} has joined the chats!`));
 
         callback();
     })
     
     socket.on('sendMessage', (message, callback)=>{
-        io.emit('message', generateMessage(message));
+        const user = getUser(socket.id);
+
+        io.to(user.room).emit('message', generateMessage(user.username, message));
         callback('delivered');
     })
 
     socket.on('sendLocation',(locationData, callback)=>{
-        io.emit('locationPublic',generateMessage(`https://google.com/maps?q=${locationData.latitude},${locationData.longitude}`));
+        const user = getUser(socket.id);
+        io.to(user.room).emit('locationPublic',generateMessage(user.username, `https://google.com/maps?q=${locationData.latitude},${locationData.longitude}`));
         callback();
     })
     socket.on('disconnect', ()=>{

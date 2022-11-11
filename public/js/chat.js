@@ -11,8 +11,9 @@ const messages = document.getElementById('messages');
 const messageTemplate = document.getElementById('message-template').innerHTML;
 
 socket.on('message', (message)=>{
-    console.log(message);
+    
     const html = Mustache.render(messageTemplate, {
+        username: message.username,
         message: message.text,
         createdAt: moment(message.createdAt).format('h:mm a')
     });
@@ -23,7 +24,7 @@ const { username, roomname} = Qs.parse(location.search, { ignoreQueryPrefix: tru
 
 socket.on('locationPublic', (location) => { 
 
-    const html = `<div class="location-box" ><span class="createdAt">${moment(location.createdAt).format('h:mm a')}</span><button id=${location.text+location.createdAt} class="button-34" role="button" >View location</button><div><br>`;
+    const html = `<div class="location-box ${location.username}"><p>${location.username}</p><span class="createdAt">${moment(location.createdAt).format('h:mm a')}</span>&nbsp &nbsp<button id=${location.text+location.createdAt} class="button-34" role="button" >View location</button><div><br>`;
     messages.insertAdjacentHTML('beforeend', html);
 
     document.getElementById(`${location.text+location.createdAt}`).addEventListener('click', ()=>{
