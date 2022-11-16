@@ -4,13 +4,21 @@
   padding: 0px 0.5em;
   border-radius: 25px 12px;
 }
+.inputFields-join:focus{
+  outline: none !important;
+  
+}
+#messages{
+  overflow-y: scroll;
+  height: 85vh;
+}
 #chat-window {
     height: 85vh;
     position: absolute;
     bottom: 50px;
     width: 55vw;
     background: #f3f1ee;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     margin-left: 250px;
     padding-left: 20px;
     border-radius: 25px 25px 0px 0px;
@@ -103,6 +111,8 @@
     }
     .inputFields-join {
       height: 40px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      padding: 2px;
     }
      .inputFields-join.button{
       background: rgb(0, 255, 225);

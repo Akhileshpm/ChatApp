@@ -26,6 +26,10 @@ io.on('connection', (socket)=>{
         socket.join(user.room);
         socket.emit('message',generateMessage('FreeChat','Welcome!'));
         socket.broadcast.to(user.room).emit('message', generateMessage(`${user.username} has joined the chats!`));
+        io.to(user.room).emit('roomData', {
+            room: user.room,
+            users: getUserInRoom(user.room)
+        })
 
         callback();
     })
@@ -46,6 +50,10 @@ io.on('connection', (socket)=>{
         const user = removeUser(socket.id);
         if(user){
             io.to(user.room).emit('message', generateMessage(`${user.username} left the chat`));
+            io.to(user.room).emit('roomData', {
+                room: user.room,
+                users: getUserInRoom(user.room)
+            })
         }
     })
 
