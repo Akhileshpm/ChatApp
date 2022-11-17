@@ -3,6 +3,7 @@ const http = require("http");
 const path = require("path");
 const socketio = require("socket.io");
 const {generateMessage} = require("./utils/messages");
+const { addUser, removeUser, getUser, getUserInRoom } = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -14,21 +15,48 @@ const publicDirectoryPath = path.join(__dirname, '../public');
 io.on('connection', (socket)=>{
     console.log("new connection");
 
-    socket.emit('message',generateMessage('welcome!'));
-    socket.broadcast.emit('message', generateMessage('A new user has joined the chat'));
+    socket.on('join', ({username, roomname}, callback) => {
 
+        const { error, user } = addUser({id: socket.id, username, room: roomname});
+
+        if(error){
+            return callback(error);
+        }
+
+        socket.join(user.room);
+        socket.emit('message',generateMessage('FreeChat','Welcome!'));
+        socket.broadcast.to(user.room).emit('message', generateMessage(`${user.username} has joined the chats!`));
+        io.to(user.room).emit('roomData', {
+            room: user.room,
+            users: getUserInRoom(user.room)
+        })
+
+        callback();
+    })
+    
     socket.on('sendMessage', (message, callback)=>{
-        io.emit('message', generateMessage(message));
+        const user = getUser(socket.id);
+
+        io.to(user.room).emit('message', generateMessage(user.username, message));
         callback('delivered');
     })
 
     socket.on('sendLocation',(locationData, callback)=>{
-        io.emit('locationPublic',generateMessage(`https://google.com/maps?q=${locationData.latitude},${locationData.longitude}`));
+        const user = getUser(socket.id);
+        io.to(user.room).emit('locationPublic',generateMessage(user.username, `https://google.com/maps?q=${locationData.latitude},${locationData.longitude}`));
         callback();
     })
     socket.on('disconnect', ()=>{
-        io.emit('message', generateMessage('Someone left the chat'));
+        const user = removeUser(socket.id);
+        if(user){
+            io.to(user.room).emit('message', generateMessage(`${user.username} left the chat`));
+            io.to(user.room).emit('roomData', {
+                room: user.room,
+                users: getUserInRoom(user.room)
+            })
+        }
     })
+
 })
 
 app.use(express.static(publicDirectoryPath));
