@@ -53,6 +53,7 @@
   }
   .createdAt {
     color: grey;
+    display: contents;
   }
   .button-34 {
     display: inline;
@@ -131,4 +132,20 @@
   display: inline;
   position: relative;
   bottom: -14px;
+}
+#sidebar {
+  background: #44c583;
+  width: 15rem;
+  height: 87vh;
+  border-radius: 1px 15px 15px 0px;
+}
+.room-title {
+  padding-left: 1rem;
+  padding-top: 1rem;
+  color: white;
+  font-size: 2em;
+}
+.list-title {
+  padding-left: 1rem;
+  font-family: sans;
 }
