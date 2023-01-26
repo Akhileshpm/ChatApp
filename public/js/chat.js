@@ -55,7 +55,9 @@ socket.on('message', (message)=>{
     autoScroll();
 })
 
-const { username, roomname} = Qs.parse(location.search, { ignoreQueryPrefix: true});
+// chat.html
+const username = localStorage.getItem('username');
+const roomname = localStorage.getItem('roomname');
 
 socket.on('locationPublic', (location) => { 
 

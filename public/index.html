@@ -9,12 +9,21 @@
                 <h1>Join</h1>
                 <form id="join-form" action="./chat.html">
                     <label for=""> Display name</label>
-                    <input class="inputFields-join" type="text" name="username" placeholder="Display name" required>
+                    <input id="username" class="inputFields-join" type="text" name="username" placeholder="Display name" required>
                     <label for="">Room name</label>
-                    <input class="inputFields-join" type="text" name="roomname" placeholder="Room name" required>
-                    <button class="inputFields-join button">Join</button>
+                    <input id="roomname" class="inputFields-join" type="text" name="roomname" placeholder="Room name" required>
+                    <button id="join-button" class="inputFields-join button">Join</button>
                 </form>
             </div>
         </div>
+        <script>
+            document.getElementById('join-button').addEventListener('click', () => {
+            const username = document.getElementById('username').value;
+            const roomname = document.getElementById('roomname').value;
+            localStorage.setItem('username', username);
+            localStorage.setItem('roomname', roomname);
+            window.location = '/chat.html';
+            });
+        </script>
     </body>
 </html>
